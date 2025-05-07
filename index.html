@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>USER FORM</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="form-container">
+    <form id="userForm">
+      <input type="text" id="name" name="FullName" placeholder="Enter your full name"/>
+      <input type="email" id="email" name="E-mail" placeholder="Enter your email" />
+      <input type="number" id="phno" name="phonenumber" placeholder="Enter your phone number" />
+      <input type="number" id="age" name="age" min="18" title="Value must be 18" placeholder="Enter your age"/>
+      <input type="radio" id="male" name="gender" value="Male">
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="Female">
+      <label for="female">Female</label>
+
+      <p>Do You Have license Card?</p>
+        <input type="checkbox"  id="yes" name="license" value="yes">
+        <label for="yes">Yes</label>
+        <input type="checkbox" id="no" name="license" value="no">
+        <label for="no">No</label>
+    <p>Choose your Location:</p>
+
+    <select id="location" name="location">
+            <option value=" ">
+              Select your location
+            </option>
+
+  
+    </select>
+
+
+      <button type="submit">Submit</button>
+    </form>   
+  </div>
+
+</script>
+   <script src="script.js"></script>
+
+
+</body>
+</html>
