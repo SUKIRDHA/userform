@@ -1,27 +1,89 @@
-    document.getElementById("userForm").addEventListener("submit", function(event) {
+let loc=document.getElementById("location");
+let locationData = [
+        'Coimbatore',
+        'Chennai',
+        'Madurai',
+      ]
+locationData.forEach((b) => {
+  console.log(b);
+  let option = document.createElement("option");
+  option.text=b;
+  option.value=b;
+  console.log(option);
+  loc.appendChild(option);
+    }
+  );
+
+let states=document.querySelectorAll(".state");
+let statename=['TamilNadu','Kerala','Karnataka','Delhi','AndhraPradesh'];
+states.forEach((st) => {
+   statename.forEach((s) => {
+      console.log(s);
+      let option = document.createElement("option");
+      option.text=s;
+      option.value=s;
+      console.log(option);
+      console.log(s);
+      st.appendChild(option);
+    }
+  );
+}
+);
+
+let input=document.getElementById("searchInput");
+let table=document.getElementById("DataTable");
+let rows=table.getElementsByTagName("tr");
+let noMatchMessage = document.getElementById("noMatch");
+input.addEventListener("input", function() {
+  let filter = input.value.toLowerCase();
+  let matchFound = false;
+  for (let i = 1; i<rows.length;i++){
+    let row = rows[i];
+    let cells=row.getElementsByTagName("td");
+    let found = false;
+    for (let j = 0; j<cells.length;j++){
+      let cell = cells[j];
+      if (cell.textContent.toLowerCase().indexOf(filter) > -1){
+        found = true;
+        matchFound=true;
+        break;
+      }
+    }
+  
+if (found) {
+      row.style.display = '';
+    }
+    else {
+      row.style.display = "none";
+    }
+  }
+        if (!matchFound) {
+        noMatchMessage.style.display = 'block';
+    } else {
+        noMatchMessage.style.display = '';
+    }
+  }
+);
+  
+
+document.getElementById("userForm").addEventListener("submit", function(event) {
       event.preventDefault();
       const name = document.getElementById("name").value;
       const email = document.getElementById("email").value;
       const phno = document.getElementById("phno").value;
       const age = document.getElementById("age").value;
       const gender=document.querySelector("input[name='gender']:checked")?.value;
-      let locationData = [
-        'Coimbatore',
-        'Chennai',
-        'Madurai',
-      ]
-   let location = document.getElementById("location").value;
-    locationData.forEach((location) => {
-        let option = document.createElement("option");
-        option.value = location;
-        locationData.appendChild(option);
-    });
-    
+      const location=loc.value;
+      const stateValues=[];
+      document.querySelectorAll(".state").forEach((select) => {
+        stateValues.push(select.value);
+      });
       const license = document.querySelectorAll("input[type='checkbox']:checked");
       let licenseValues=[];
       license.forEach(a => {
         licenseValues.push(a.value)
       });
+
       const user = {
         name: name,
         email: email,
@@ -29,28 +91,41 @@
         age: age,
         gender:gender,
         license:licenseValues,
-        location:location
+        location:location,
+        state:stateValues,
       };
-  if (!name) {
-        alert("Name is required.");
-        return;
-    }
 
-    if (!email || !validateEmail(email)) {
-        alert("Please enter a valid email address.");
-        return;
-    }
+  // if (!name) {
+  //       alert("Name is required.");
+  //       return;
+  //   }
 
-    if (!phno || !validatePhoneNumber(phno)) {
-        alert("Please enter a valid phone number (10 digits).");
-        return;
-    }
+  //   if (!email || !validateEmail(email)) {
+  //       alert("Please enter a valid email address.");
+  //       return;
+  //   }
 
-    if (!age || isNaN(age) || age <= 0 ||age>120) {
-        alert("Please enter a valid age.");
-        return;
-    }
+  //   if (!phno || !validatePhoneNumber(phno)) {
+  //       alert("Please enter a valid phone number (10 digits).");
+  //       return;
+  //   }
 
+  //   if (!age || isNaN(age) || age <= 0 ||age>100) {
+  //       alert("Please enter a valid age.");
+  //       return;
+  //   }
+   
+  //  if (license.checked)
+  //  {
+  //       alert("Please select at least one license type.");
+  //       return;
+  //  }
+
+  //   if (loc.selectedIndex ==0)
+  //   {
+  //       alert("Please select a location.");
+  //       return;
+  //     }
      console.log(user)
 
 
